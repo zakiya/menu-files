@@ -1,0 +1,249 @@
+.block-epihc-main-menu {
+  @include media('<menu') {
+    display: none;
+
+    &.opened {
+      display: block;
+    }
+  }
+
+  @include media('>=menu') {
+    display: block;
+    flex-grow: 1;
+    max-width: 850px;
+  }
+}
+
+.menu--main-menu {
+  // Mobile menu
+  @include media('<menu') {
+    .menu-item {
+      position: relative;
+
+      a {
+        @include ff-montserrat;
+        display: flex;
+        align-items: center;
+        height: 50px;
+        padding: 20px 15px 20px 45px;
+        color: $c-mine-shaft;
+        font-size: 12px;
+        line-height: 17px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-decoration: none;
+        transition: background-color 200ms;
+
+        br {
+          content: '';
+
+          &::after {
+            content: ' ';
+          }
+        }
+
+        .dropdown-arrow {
+          display: none;
+        }
+      }
+    }
+
+    .sub-menu-toggle {
+      position: absolute;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border: 0;
+      background-color: transparent;
+      font-size: 16px;
+      color: $c-viking;
+      cursor: pointer;
+      outline: none;
+      z-index: 1;
+
+      .opened {
+        display: none;
+      }
+
+      &.opened {
+        .closed {
+          display: none;
+        }
+
+        .opened {
+          display: inline-block;
+        }
+      }
+    }
+
+    // First level items
+    .menu-item--level-0 {
+      border-top: 1px solid $c-white;
+
+      > a {
+        background-color: $c-wild-sand;
+
+        &:hover {
+          background-color: $c-alto;
+        }
+      }
+    }
+
+    // Second level items
+    .menu-item--level-1 {
+      border-top: 1px solid $c-wild-sand;
+
+      > a {
+        padding-left: 65px;
+        background-color: $c-white;
+
+        &:hover {
+          background-color: $c-alto;
+        }
+      }
+    }
+
+    // Second level menus
+    .menu {
+      display: none;
+
+      &.opened {
+        display: block;
+      }
+    }
+
+    a.signatory {
+      background-color: $c-eminence;
+      color: $c-white;
+
+      &:hover {
+        background-color: $c-tapestry;
+      }
+
+      i {
+        margin-left: -32px;
+        margin-right: 11px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  // Desktop menu
+  @include media('>=menu') {
+    display: flex;
+    justify-content: stretch;
+
+    .menu-item {
+      a {
+        @include ff-montserrat;
+        display: flex;
+        align-items: center;
+        color: $c-mine-shaft;
+        font-size: 12px;
+        line-height: 17px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-decoration: none;
+
+        span {
+          white-space: break-spaces;
+        }
+      }
+    }
+
+    .dropdown-arrow {
+      margin-left: 5px;
+      font-size: 16px;
+      color: $c-viking;
+    }
+
+    .sub-menu-toggle {
+      display: none;
+    }
+
+    // Second level menus
+    .menu {
+      @include shadow;
+      display: none;
+      position: absolute;
+      top: 76px;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: max-content;
+      min-width: 150px;
+      max-width: 250px;
+      padding: 0;
+      border-top: 4px solid $c-viking;
+      background-color: $c-white;
+      z-index: 10;
+    }
+
+    // First level items
+    .menu-item--level-0 {
+      position: relative;
+      flex-grow: 1;
+
+      > a {
+        justify-content: center;
+        height: 80px;
+        padding: 20px 5px;
+        border-bottom: 4px solid transparent;
+
+        &:hover,
+        &.is-active {
+          border-bottom-color: $c-viking;
+          background-color: $c-wild-sand;
+        }
+      }
+
+      &:hover {
+        .menu {
+          display: block;
+        }
+      }
+    }
+
+    // Second level items
+    .menu-item--level-1 {
+      padding: 0;
+      border-top: 1px solid $c-white;
+
+      &:first-child {
+        border-top-width: 0;
+      }
+
+      > a {
+        padding: 15px;
+        line-height: 15px;
+
+        &:hover,
+        &.is-active {
+          background-color: $c-wild-sand;
+        }
+      }
+    }
+
+    a.signatory {
+      padding-left: 20px;
+      padding-right: 20px;
+      background-color: $c-eminence;
+      color: $c-white;
+
+      &:hover,
+      &.is-active {
+        border-bottom-color: transparent;
+        background-color: $c-abbey;
+      }
+
+      i {
+        margin-right: 11px;
+        font-size: 20px;
+      }
+    }
+  }
+}
